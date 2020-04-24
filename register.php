@@ -93,10 +93,10 @@ if(isset($_SESSION["username"]))
           </div>
           <div class="row">
             <div class="small-4 columns">
-              <label for="zip" class="right inline">Zip Code</label>
+              <label for="pin" class="right inline">Zip Code</label>
             </div>
             <div class="small-8 columns">
-              <input type="number" id="zip" placeholder="Zip code" name="pin" required>
+              <input type="number" id="pin" placeholder="Zip code" name="pin" required>
             </div>
           </div>
           <div class="row">
@@ -298,18 +298,18 @@ if(isset($_SESSION["username"]))
     if(error==false)
     {
       $.post("insert.php", {
-        fname: first_name,
+        fname:first_name,
         lname:last_name,
         address:address,
         city:city,
         pin:pin,
-        email: email,
+        email:email,
         pwd: password
         }, function(data) {
           if (data == 'Success') {
             $("form")[0].reset();
           }
-        alert(data);
+        console.log(data);
       });
     }
   });
