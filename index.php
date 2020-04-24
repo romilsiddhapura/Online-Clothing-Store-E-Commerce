@@ -1,8 +1,8 @@
 <?php
-
-//if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
-if(session_id() == '' || !isset($_SESSION)){session_start();}
-
+if(session_id() == '' || !isset($_SESSION))
+	{
+		session_start();
+	}
 ?>
 
 <!doctype html>
@@ -10,7 +10,7 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>BOLT Sports Shop</title>
+    <title>Clothing Shop</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
   </head>
@@ -19,7 +19,7 @@ if(session_id() == '' || !isset($_SESSION)){session_start();}
     <nav class="top-bar" data-topbar role="navigation">
       <ul class="title-area">
         <li class="name">
-          <h1><a href="index.php">BOLT Sports Shop</a></h1>
+          <h1><a href="index.php">Clothing Shop</a></h1>
         </li>
         <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
       </ul>
