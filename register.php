@@ -1,4 +1,4 @@
-<?php
+  <?php
 if(session_id() == '' || !isset($_SESSION))
   {
     session_start();
@@ -177,7 +177,7 @@ if(isset($_SESSION["username"]))
 
     <script>
       $(document).foundation();
-
+      var error=false;
       function checkMail(str) {
         if (str.length == 0) {
             document.getElementById("checkemail").innerHTML = "";
@@ -188,6 +188,11 @@ if(isset($_SESSION["username"]))
                 if (this.readyState == 4 && this.status == 200) {
                     //console.log("here");
                     //console.log(this.responseText);
+                    if(this.responseText == "OK"){
+                      error = false;
+                    } else {
+                      error = true;
+                    }
                     document.getElementById("checkemail").innerHTML = this.responseText;
                 }
             }
@@ -268,7 +273,7 @@ if(isset($_SESSION["username"]))
     var pin=$('#pin').val();
     var email = $('#email').val();
     var password = $('#password').val();
-    var error=false;
+    
     $(".error").remove();
 
     if (first_name.length < 1) {
@@ -307,7 +312,10 @@ if(isset($_SESSION["username"]))
         pwd: password
         }, function(data) {
           if (data == 'Success') {
-            $("form")[0].reset();
+            //$("form")[0].reset();
+              console.log(data);
+              window.location = "login.php";
+             // <///header ("location:login.php");?>
           }
         console.log(data);
       });
