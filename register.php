@@ -201,30 +201,6 @@ if(isset($_SESSION["username"]))
         }
       }
 
-
-      function checkPassword(str) {
-        var number = /([0-9])/;
-        var alphabets = /([a-zA-Z])/;
-        var special_characters = /([~,!,@,#,$,%,^,&,*,-,_,+,=,?,>,<])/;
-        if(str.length<6) {
-          //$('#password-strength-status').removeClass();
-          //$('#checkpassword').addClass('weak-password');
-          $('#checkpassword').html("Weak (should be atleast 6 characters.)");
-        } else {    
-            if($(str.match(number)) && $(str.match(alphabets)) && $(str.match(special_characters))) {            
-          //$('#password-strength-status').removeClass();
-          //$('#password-strength-status').addClass('strong-password');
-            $('#checkpassword').html("Strong");
-          } else {
-          //$('#password-strength-status').removeClass();
-          //$('#password-strength-status').addClass('medium-password');
-            $('#checkpassword').html("Medium (should include alphabets, numbers and special characters.)");
-          }
-        }
-      }
-
-
-
     function checkStrength(password){
       var strength = 0
       //console.log(strength+" "+password);
@@ -261,7 +237,7 @@ if(isset($_SESSION["username"]))
           $('#result').addClass('strong')
           $('#result').html('Strong')
       }
-  }
+    }
 
     //function validateForm(){
     $('#submit').click(function(e) {
