@@ -60,6 +60,10 @@ include 'config.php';
     <div class="row" style="margin-top:10px;">
       <div class="large-12">
         <h3>Hey Admin!</h3>
+
+        <a href="add-item.php">
+          <button id="add_button">Add New Product</button>
+        </a>
         <?php
           $result = $mysqli->query("SELECT * from products where soft_delete = '0' order by id asc");
           if($result) {
