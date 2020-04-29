@@ -70,6 +70,7 @@ include 'config.php';
               echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
+
               echo '<div class="large-6 columns" style="padding-left:0;">';
               echo '<form method="post" name="update-quantity" action="admin-update.php">';
               echo '<p><strong>New Qty</strong>:</p>';

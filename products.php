@@ -46,51 +46,122 @@ include 'config.php';
         </ul>
       </section>
     </nav>
-
+    <?php
+      $query="";
+      //$conn = mysqli_connect("localhost", "root", "root", "hw3");
+      // if(!$conn){
+      //   echo "Database connection failed!";
+      // }
+      // else{
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+          if($_POST["Category"]=="all" || $_POST["Category"] == ""){
+            $query="SELECT * FROM products";  
+          } else{
+            $category = $_POST["Category"];
+            $query="SELECT * FROM products WHERE category='$category'";
+          }
+          // else if($_POST["Category"]!="Jeans"){
+          //   $category=$_POST["Category"];
+          //   $query="SELECT * FROM products WHERE category='$category'"; 
+          // }
+          // else if($_POST["Category"]!="Tees"){
+          //   $category=$_POST["Category"];
+          //   $query="SELECT * FROM products WHERE category='$category'"; 
+          // }
+          // else if($_POST["Category"]!="Jacket"){
+          //   $category=$_POST["Category"];
+          //   $query="SELECT * FROM products WHERE category='$category'"; 
+          // }
+          // else{
+          //   $Year=$_POST["Year"];
+          //   $Gender=$_POST["Gender"];
+          //   $query="SELECT * FROM babynames WHERE Year='$Year' AND Gender='$Gender' ORDER BY Year,Gender,RANKING ASC";  
+          // } 
+        }
+         else{
+           $query="SELECT * FROM products";
+        }
+      // }
+      //$result = mysqli_query($mysqli,$query);
+      $result = $mysqli->query($query);
+    ?>
 
 
 
     <div class="row" style="margin-top:10px;">
       <div class="small-12">
+        <div class="container">
+          <form action="products.php" method="POST">
+            <label for="Category">Choose Category:</label>
+            <select name="Category">
+              <option value="all" <?if($_POST['Category'] == 'all'){echo " selected";}?>>All Categories</option>
+              <option value="Jeans" <?if($_POST['Category'] == 'Jeans'){echo " selected";}?>>Jeans</option>
+              <option value="Tees" <?if($_POST['Category'] == 'Tees'){echo " selected";}?>>Tees</option>
+              <option value="Jacket" <?if($_POST['Category'] == 'Jacket'){echo " selected";}?>>Jacket</option>
+            </select>
+            <input type="submit" value="Submit" >
+          </form>
+      </div>
         <?php
           $i=0;
           $product_id = array();
           $product_quantity = array();
-
-          $result = $mysqli->query('SELECT * FROM products');
-          if($result === FALSE){
+          //$query = 0;
+          //$result = $mysqli->query('SELECT * FROM products');
+          /*if($result === FALSE){
             die(mysql_error());
-          }
+          }*/
 
           if($result){
-
-            while($obj = $result->fetch_object()) {
-
-              echo '<div class="large-4 columns">';
-              echo '<p><h3>'.$obj->product_name.'</h3></p>';
-              echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
-              echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
-              echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
-              echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
-              echo '<p><strong>Category</strong>: '.$obj->category.'</p>';
-              echo '<p><strong>Price (Per Unit)</strong>: '.$currency.$obj->price.'</p>';
-
-
-
-              if($obj->qty > 0){
-                echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'"><input type="submit" value="Add To Cart" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a></p>';
-              }
-              else {
-                echo 'Out Of Stock!';
-              }
-              echo '</div>';
-
-              $i++;
+            while($obj = $result->fetch_object())
+            {
+                //echo '<p>'.$obj->category.'</p>';
+                echo '<div class="large-4 columns">';
+                echo '<p><h3>'.$obj->product_name.'</h3></p>';
+                echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
+                echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
+                echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
+                echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
+                echo '<p><strong>Category</strong>: '.$obj->category.'</p>';
+                echo '<p><strong>Price (Per Unit)</strong>: '.$currency.$obj->price.'</p>';
+                if($obj->qty > 0){
+                  echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'"><input type="submit" value="Add To Cart" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a></p>';
+                }
+                else {
+                  echo 'Out Of Stock!';
+                }
+                echo '</div>';
+                $_SESSION['product_id'] = $product_id;
             }
-
           }
 
-          $_SESSION['product_id'] = $product_id;
+           // while($obj = $result->fetch_object()) {
+
+           //    echo '<div class="large-4 columns">';
+           //    echo '<p><h3>'.$obj->product_name.'</h3></p>';
+           //    echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
+           //    echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
+           //    echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
+           //    echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
+           //    echo '<p><strong>Category</strong>: '.$obj->category.'</p>';
+           //    echo '<p><strong>Price (Per Unit)</strong>: '.$currency.$obj->price.'</p>';
+
+
+
+           //    if($obj->qty > 0){
+           //      echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'"><input type="submit" value="Add To Cart" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a></p>';
+           //    }
+           //    else {
+           //      echo 'Out Of Stock!';
+           //    }
+           //    echo '</div>';
+
+           //    $i++;
+           //  }
+
+          
+
+         // $_SESSION['product_id'] = $product_id;
 
 
           echo '</div>';
