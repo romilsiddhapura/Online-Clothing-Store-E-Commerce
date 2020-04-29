@@ -54,11 +54,15 @@ include 'config.php';
       // }
       // else{
         if($_SERVER["REQUEST_METHOD"]=="POST"){
-          if($_POST["Category"]=="all" || $_POST["Category"] == ""){
-            $query="SELECT * FROM products";  
-          } else{
+          if($_POST["Category"]=="all" && empty($_POST['term'])){
+            $query="SELECT * FROM products where soft_delete = '0'";  
+          } else if(empty($_POST['term'])){
             $category = $_POST["Category"];
-            $query="SELECT * FROM products WHERE category='$category'";
+            $query="SELECT * FROM products WHERE category='$category' and soft_delete = '0'";
+          } else if($_POST["Category"] == "all"){
+            $query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' ";
+          } else {
+            $query = "SELECT * FROM products WHERE category = '$category' and product_name LIKE '%".$_POST['term']."%' ";
           }
           // else if($_POST["Category"]!="Jeans"){
           //   $category=$_POST["Category"];
@@ -79,7 +83,7 @@ include 'config.php';
           // } 
         }
          else{
-           $query="SELECT * FROM products";
+           $query="SELECT * FROM products where soft_delete='0'";
         }
       // }
       //$result = mysqli_query($mysqli,$query);
@@ -99,6 +103,7 @@ include 'config.php';
               <option value="Tees" <?if($_POST['Category'] == 'Tees'){echo " selected";}?>>Tees</option>
               <option value="Jacket" <?if($_POST['Category'] == 'Jacket'){echo " selected";}?>>Jacket</option>
             </select>
+            Search: <input type="text" name="term"/><br/>  
             <input type="submit" value="Submit" >
           </form>
       </div>
@@ -118,7 +123,7 @@ include 'config.php';
                 //echo '<p>'.$obj->category.'</p>';
                 echo '<div class="large-4 columns">';
                 echo '<p><h3>'.$obj->product_name.'</h3></p>';
-                echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
+                echo '<img src="data:image/jpeg;base64,'.base64_encode($obj->product_image).'"/>';
                 echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
                 echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                 echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';

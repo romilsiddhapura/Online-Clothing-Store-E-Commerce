@@ -61,12 +61,12 @@ include 'config.php';
       <div class="large-12">
         <h3>Hey Admin!</h3>
         <?php
-          $result = $mysqli->query("SELECT * from products order by id asc");
+          $result = $mysqli->query("SELECT * from products where soft_delete = '0' order by id asc");
           if($result) {
             while($obj = $result->fetch_object()) {
               echo '<div class="large-4 columns">';
               echo '<p><h3>'.$obj->product_name.'</h3></p>';
-              echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
+              echo '<img src="data:image/jpeg;base64,'.base64_encode($obj->product_image).'"/>';
               echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';

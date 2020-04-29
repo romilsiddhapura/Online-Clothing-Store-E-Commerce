@@ -18,7 +18,7 @@ if($result === FALSE){
 
 if($result){
   while($obj = $result->fetch_object()){
-    if($obj->email === $username && $obj->password === $password) {
+    if($obj->email === $username && password_verify($password, $obj->password)) {
 
       $_SESSION['username'] = $username;
       $_SESSION['type'] = $obj->type;
@@ -37,7 +37,7 @@ if($result){
 
 function redirect() {
   echo '<h1>Invalid Login! Redirecting...</h1>';
-  header("Refresh: 3; url=index.php");
+  header("Refresh: 1; url=index.php");
 }
 
 
