@@ -59,11 +59,12 @@ include 'config.php';
 
     <div class="row" style="margin-top:10px;">
       <div class="large-12">
+        <div class="container">
         <h3>Hey Admin!</h3>
-
         <a href="add-item.php">
           <button id="add_button">Add New Product</button>
         </a>
+      </div>
         <?php
           $result = $mysqli->query("SELECT * from products where soft_delete = '0' order by id asc");
           if($result) {
@@ -74,7 +75,8 @@ include 'config.php';
               echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
               echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
               echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
-              echo '<p><a href="update-item.php?id='.$obj->id.'"><input type="submit" value="Edit" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a></p>';
+              echo '<a href="update-item.php?id='.$obj->id.'"><input type="submit" value="Edit" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a> ';
+              echo '<a href="delete-item.php?id='.$obj->id.'"><input type="submit" value="Delete" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a>';
               //echo '<div class="large-6 columns" style="padding-left:0;">';
               //echo '<form method="post" name="update-quantity" action="admin-update.php">';
               //echo '<p><strong>New Qty</strong>:</p>';
