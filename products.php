@@ -13,6 +13,9 @@ include 'config.php';
     <title>Products || BOLT Sports Shop</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
   </head>
   <body>
 
@@ -47,7 +50,15 @@ include 'config.php';
       </section>
     </nav>
     <?php
-      $query="";
+      if (isset($_GET['pageno'])) {
+            $pageno = $_GET['pageno'];
+      } else {
+          $pageno = 1;
+      }
+      $no_of_records_per_page = 3;
+      $offset = ($pageno-1) * $no_of_records_per_page;
+
+      // $query="";
       //$conn = mysqli_connect("localhost", "root", "root", "hw3");
       // if(!$conn){
       //   echo "Database connection failed!";
@@ -62,6 +73,7 @@ include 'config.php';
           } else if($_POST["Category"] == "all"){
             $query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' ";
           } else {
+            $category = $_POST["Category"];
             $query = "SELECT * FROM products WHERE category = '$category' and product_name LIKE '%".$_POST['term']."%' ";
           }
           // else if($_POST["Category"]!="Jeans"){
@@ -88,6 +100,30 @@ include 'config.php';
       // }
       //$result = mysqli_query($mysqli,$query);
       $result = $mysqli->query($query);
+      $total_rows = $result->num_rows;
+      echo "<p>".$total_rows."</p>";
+      $total_pages = ceil($total_rows / $no_of_records_per_page);
+      $new_query="";
+      if($_SERVER["REQUEST_METHOD"] == 'POST'){
+        if($_POST["Category"]=="all" && empty($_POST['term'])){
+          $new_query="SELECT * FROM products where soft_delete = '0' limit $offset, $no_of_records_per_page";  
+        } else if(empty($_POST['term'])){
+          $category = $_POST["Category"];
+          $new_query="SELECT * FROM products WHERE category='$category' and soft_delete = '0' limit $offset, $no_of_records_per_page ";
+        } else if($_POST["Category"] == "all"){
+          $new_query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page";
+        } else {
+          $category = $_POST["Category"];
+          $new_query = "SELECT * FROM products WHERE category = '$category' and product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page ";
+        }
+      } else {
+        $new_query = "SELECT * FROM products where soft_delete='0' limit $offset, $no_of_records_per_page";
+      }
+      
+
+      $new_result = $mysqli->query($new_query);
+
+
     ?>
 
 
@@ -111,14 +147,9 @@ include 'config.php';
           $i=0;
           $product_id = array();
           $product_quantity = array();
-          //$query = 0;
-          //$result = $mysqli->query('SELECT * FROM products');
-          /*if($result === FALSE){
-            die(mysql_error());
-          }*/
 
-          if($result){
-            while($obj = $result->fetch_object())
+          if($new_result){
+            while($obj = $new_result->fetch_object())
             {
                 //echo '<p>'.$obj->category.'</p>';
                 echo '<div class="large-4 columns">';
@@ -175,6 +206,19 @@ include 'config.php';
           echo '</div>';
           echo '</div>';
           ?>
+        <ul class="pagination">
+              <li><a href="?pageno=1">First</a></li>
+              <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno-1); } ?>"><?php echo "".($pageno-1)."";?></a>
+              </li>
+              <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>"><?php echo "".$pageno."";?></a>
+              </li>
+              <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+                  <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><?php echo "".($pageno+1)."";?></a>
+              </li>
+              <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+          </ul>
 
         <div class="row" style="margin-top:10px;">
           <div class="small-12">
