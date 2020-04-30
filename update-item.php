@@ -101,7 +101,7 @@ if($result){
             </div>
             <div class="small-8 columns">
               <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $obj->product_image ).'"style="width:80px;height:100px;"/>';?>
-              <input type="file" id="prod_image" name="prod_image">
+              <input type="file" id="prod_image" name="prod_image" value=<?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $obj->product_image ).'"style="width:80px;height:100px;"/>';?>>
             </div>
           </div>
 
@@ -111,6 +111,15 @@ if($result){
             </div>
             <div class="small-8 columns">
               <input type="text" id="prod_category" name="prod_category" value=<?php echo '"'.$obj->category.'"' ?>>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="small-4 columns">
+              <label for="prod_sport">Sport</label>
+            </div>
+            <div class="small-8 columns">
+              <input type="text" id="prod_sport" name="prod_sport" value=<?php echo '"'.$obj->sport.'"' ?>>
             </div>
           </div>
 

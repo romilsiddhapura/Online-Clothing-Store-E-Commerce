@@ -71,10 +71,11 @@ include 'config.php';
             while($obj = $result->fetch_object()) {
               echo '<div class="large-4 columns">';
               echo '<p><h3>'.$obj->product_name.'</h3></p>';
-              echo '<img src="data:image/jpeg;base64,'.base64_encode($obj->product_image).'"/>';
-              echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
-              echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
-              echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
+              echo '<img src="data:image/jpeg;base64,'.base64_encode($obj->product_image).'" style="height:400px;width:300px;" />';
+              echo '<p></p>';
+              //echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
+              //echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
+              //echo '<p><strong>Units Available</strong>: '.$obj->qty.'</p>';
               echo '<a href="update-item.php?id='.$obj->id.'"><input type="submit" value="Edit" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a> ';
               echo '<a href="delete-item.php?id='.$obj->id.'"><input type="submit" value="Delete" style="clear:both; background: #0078A0; border: none; color: #fff; font-size: 1em; padding: 10px;" /></a>';
               //echo '<div class="large-6 columns" style="padding-left:0;">';

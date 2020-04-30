@@ -95,6 +95,15 @@ include 'config.php';
 
           <div class="row">
             <div class="small-4 columns">
+              <label for="prod_sport">Sport</label>
+            </div>
+            <div class="small-8 columns">
+              <input type="text" id="prod_sport" name="prod_sport">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="small-4 columns">
               <label for="prod_desc">Description</label>
             </div>
             <div class="small-8 columns">
