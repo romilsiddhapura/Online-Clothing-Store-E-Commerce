@@ -13,9 +13,9 @@ include 'config.php';
     <title>Products || BOLT Sports Shop</title>
     <link rel="stylesheet" href="css/foundation.css" />
     <script src="js/vendor/modernizr.js"></script>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
 
@@ -101,7 +101,7 @@ include 'config.php';
       //$result = mysqli_query($mysqli,$query);
       $result = $mysqli->query($query);
       $total_rows = $result->num_rows;
-      echo "<p>".$total_rows."</p>";
+      //echo "<p>".$total_rows."</p>";
       $total_pages = ceil($total_rows / $no_of_records_per_page);
       $new_query="";
       if($_SERVER["REQUEST_METHOD"] == 'POST'){
@@ -208,18 +208,17 @@ include 'config.php';
           ?>
         <ul class="pagination">
               <li><a href="?pageno=1">First</a></li>
-              <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+              <li class="<?php if($pageno <= 1){ echo 'hidden'; } ?>">
                   <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno-1); } ?>"><?php echo "".($pageno-1)."";?></a>
               </li>
-              <li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>"><?php echo "".$pageno."";?></a>
+              <li>
+                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>"><?php echo "<b> ".$pageno."</b>";?></a>
               </li>
-              <li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+              <li class="<?php if($pageno >= $total_pages){ echo 'hidden'; } ?>">
                   <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><?php echo "".($pageno+1)."";?></a>
               </li>
               <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
           </ul>
-
         <div class="row" style="margin-top:10px;">
           <div class="small-12">
 
