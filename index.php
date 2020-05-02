@@ -5,73 +5,91 @@ if(session_id() == '' || !isset($_SESSION))
 	}
 ?>
 
-<!doctype html>
-<html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Clothing Shop</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
-  </head>
-  <body>
+<!DOCTYPE HTML>
+<!--
+	Industrious by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Clothing Shop</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link rel="stylesheet" href="css/main.css" />
+	</head>
+	<body class="is-preload">
 
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="index.php">Clothing Shop</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-      </ul>
+		<!-- Header -->
+			<header id="header">
+				<a class="logo" href="index.php">Clothing Store</a>
+				<nav>
+					<a href="#menu">Menu</a>
+				</nav>
+			</header>
 
-      <section class="top-bar-section">
-      <!-- Right Nav Section -->
-        <ul class="right">
-          <li><a href="about.php">About</a></li>
-          <li><a href="products.php">Products</a></li>
-          <li><a href="cart.php">View Cart</a></li>
-          <li><a href="orders.php">My Orders</a></li>
-          <li><a href="contact.php">Contact</a></li>
-          <?php
+		<!-- Nav -->
+			<nav id="menu">
+				<ul class="links">
+					<li><a href="index.php">Home</a></li>
+                  	<li><a href="about.php">About</a></li>
+                  	<li><a href="products.php">Products</a></li>
+                  	<li><a href="cart.php">View Cart</a></li>
+                  	<li><a href="orders.php">My Orders</a></li>
+                  	<li><a href="contact.php">Contact</a></li>
 
-          if(isset($_SESSION['username'])){
-            echo '<li><a href="account.php">My Account</a></li>';
-            echo '<li><a href="logout.php">Log Out</a></li>';
-          }
-          else{
-            echo '<li><a href="login.php">Log In</a></li>';
-            echo '<li><a href="register.php">Register</a></li>';
-          }
-          ?>
-        </ul>
-      </section>
-    </nav>
+                  <?php
+                    if(isset($_SESSION['username'])){
+                      echo '<li><a href="account.php">My Account</a></li>';
+                      echo '<li><a href="logout.php">Log Out</a></li>';
+                    }
+                    else{
+                      echo '<li><a href="login.php">Log In</a></li>';
+                      echo '<li><a href="register.php">Register</a></li>';
+                    }
+                  ?>
+				</ul>
+			</nav>
 
-
-
-
-    <img data-interchange="[images/bolt-retina.jpg, (retina)], [images/bolt-landscape.jpg, (large)], [images/bolt-mobile.jpg, (mobile)], [images/bolt-landscape.jpg, (medium)]">
-    <noscript><img src="images/bolt-landscape.jpg"></noscript>
-
-
-    <div class="row" style="margin-top:10px;">
-      <div class="small-12">
-
-        <footer style="margin-top:10px;">
-           <p style="text-align:center; font-size:0.8em;">&copy; BOLT Sports Shop. All Rights Reserved.</p>
-        </footer>
-
-      </div>
-    </div>
+		<!-- Banner -->
+			<section id="banner" style="background-image:url('images/indexbg.jpg')">
+				<div class="inner">
+					<h1>Welcome to our Clothing Store!</h1>
+				</div>
+				<!-- <img src="images/indexbg.jpg"></img> -->
+				<!-- <video autoplay loop muted playsinline src="images/banner.mp4"></video> -->
+			</section>
 
 
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="inner">
+					<div class="content">
+						
+						<section>
+							<h4>Follow us:</h4>
+							<ul class="plain">
+								<li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+								<li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+								<li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+								<li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+							</ul>
+						</section>
+					</div>
+					<div class="copyright">
+						&copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
+					</div>
+				</div>
+			</footer>
 
+		<!-- Scripts -->
+			<script src="js/jquery.min.js"></script>
+			<script src="js/browser.min.js"></script>
+			<script src="js/breakpoints.min.js"></script>
+			<script src="js/util.js"></script>
+			<script src="js/main.js"></script>
 
-
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
-  </body>
+	</body>
 </html>

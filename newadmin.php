@@ -2,11 +2,16 @@
 
 //if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 if(session_id() == '' || !isset($_SESSION)){session_start();}
-include 'config.php';
-//echo "<p>".$_SESSION["type"]."</p>";
-if($_SESSION["type"] === "admin"){
-  header("location:newadmin.php");
+
+if(!isset($_SESSION["username"])) {
+  header("location:index.php");
 }
+
+if($_SESSION["type"]!="admin") {
+  header("location:index.php");
+}
+
+include 'config.php';
 ?>
 
 <!doctype html>
@@ -46,7 +51,7 @@ if($_SESSION["type"] === "admin"){
         <li><a href="index.php">Home</a></li>
         <!-- <li><a href="elements.html">Elements</a></li> -->
         <li><a href="about.php">About</a></li>
-        <li class='active'><a href="products.php">Products</a></li>
+        <li class='active'><a href="newadmin.php">Products</a></li>
         <li><a href="cart.php">View Cart</a></li>
         <li><a href="orders.php">My Orders</a></li>
         <li><a href="contact.php">Contact</a></li>
@@ -174,14 +179,14 @@ if($_SESSION["type"] === "admin"){
   <div class="container">
     <div  style="margin-top:10px;">
       <br>
-      <h2 align="center"> Filtering your product </h2>
+      <h2 align="center"> Hey Romil(Founder), Update your products. </h2>
       <br>
       <br>
     </div>
     <div class = "row">
       <div class="col-md-3">
       <!-- <div class="small-12"> -->
-          <form action="products.php" method="POST">
+          <form action="newadmin.php" method="POST">
             <label for="Category">Choose Category:</label>
             <select class="form-control" name="Category" style = "width:200px;">
               <option value="all" <?if($_POST['Category'] == 'all'){echo " selected";}?>>All Categories</option>
@@ -214,23 +219,11 @@ if($_SESSION["type"] === "admin"){
                 //echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                 
                 echo '<h4 style="text-align:center; color:red;" class="text_danger">$'. $obj->price . '</h4>';
-                echo '<strong>Category</strong>: '.$obj->category.'</br>';
-                echo '<strong>Units Available</strong>: '.$obj->qty.'</br>';
-                if($obj->qty > 0){
-                  echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'"><input type="submit" value="Add To Cart" style=" text-align:center; clear:both; background: #ffc299; border: none; color:red; font-size: 1em; " /></a></p>';
-                  // <div class="text-center container-card-button">
-                  //   <button 
-                  //      type="button"
-                  //      class="btn btn-default"
-                  //      onclick="cart.add('43');">
-                  //       Add to Cart
-                  //   </button>
-                  //   <i class="fa fa-shopping-cart icon-card"></i>
-                  // </div>
-                }
-                else {
-                  echo 'Out Of Stock!';
-                }
+                echo '<strong>Category</strong>: '.$obj->category.'<br>';
+                echo '<p><strong>Units Available</strong>: '.$obj->qty.'</strong></p>';
+                echo '<a href="update-item.php?id='.$obj->id.'"><input type="submit" value="Edit" style="clear:both; background: #ffc299; border: none; color: red; font-size: 1em; padding:4px; width:70px;" /></a> ';
+                echo '<a href="delete-item.php?id='.$obj->id.'"><input type="submit" value="Delete" style="clear:both; background: #ffc299; border: none; color:red; font-size: 1em; padding:4px; width:70px;" /></a>';
+
                 echo '</div>';
 
         //         <div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:450px;">
