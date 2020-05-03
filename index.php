@@ -65,24 +65,25 @@ if(session_id() == '' || !isset($_SESSION))
 
 		<!-- Footer -->
 			<footer id="footer">
-				<div class="inner">
-					<div class="content">
-						
-						<section>
-							<h4>Follow us:</h4>
-							<ul class="plain">
-								<li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-								<li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-								<li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-								<li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
-							</ul>
-						</section>
-					</div>
-					<div class="copyright">
-						&copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
-					</div>
-				</div>
-			</footer>
+        <!--<div class="inner">-->
+          <div class="content">
+            
+            <section>
+              <h4>Follow us:</h4>
+              <ul class="plain">
+                <li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+              </ul>
+            </section>
+          </div>
+          <div class="copyright">
+            &copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
+          </div>
+        <!--</div>-->
+      </footer>
+
 
 		<!-- Scripts -->
 			<script src="js/jquery.min.js"></script>

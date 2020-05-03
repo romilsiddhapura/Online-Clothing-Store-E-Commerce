@@ -4,7 +4,7 @@
 if(session_id() == '' || !isset($_SESSION)){session_start();}
 
 if(!isset($_SESSION["username"])){
-  header("location:index.php");
+  header("location:login.php");
 }
 include 'config.php';
 ?>

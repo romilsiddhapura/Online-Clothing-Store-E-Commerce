@@ -33,7 +33,7 @@ include 'config.php';
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href = "css/jquery-ui.css" rel = "stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
 
   </head>
@@ -195,7 +195,7 @@ include 'config.php';
               <option value="Jacket" <?if($_POST['Category'] == 'Jacket'){echo " selected";}?>>Jacket</option>
             </select>
             Search: <input type="text" name="term"/ style = "width:200px;"><br/>  
-            <input type="submit" value="Submit" >
+            <input type="submit" value="Apply" >
           </form>
       </div>
     <div class="col-md-9">
@@ -272,38 +272,34 @@ include 'config.php';
     </div>
   </div>
 
+    <div class = style = "text-align: center;">
+      <div style="width: 250px; margin: 0 auto; ">
         <ul class="pagination">
-              <li><a href="?pageno=1">First</a></li>
-              <li class="<?php if($pageno <= 1){ echo 'hidden'; } ?>">
-                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno-1); } ?>"><?php echo "".($pageno-1)."";?></a>
-              </li>
-              <li>
-                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>"><?php echo "<b> ".$pageno."</b>";?></a>
-              </li>
-              <li class="<?php if($pageno >= $total_pages){ echo 'hidden'; } ?>">
-                  <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><?php echo "".($pageno+1)."";?></a>
-              </li>
-              <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-          </ul>
-        <div class="row" style="margin-top:10px;">
-          <div class="small-12">
-
-
-
-
-        <!-- <footer style="margin-top:10px;">
-           <p style="text-align:center; font-size:0.8em;clear:both;">&copy; BOLT Sports Shop. All Rights Reserved.</p>
-        </footer> -->
-
-
-
+            <li><a href="?pageno=1" style="color:black;">First</a></li>
+            <li class="<?php if($pageno<=2 || $pageno <= $total_pages-1){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno - 2); } ?>" style="color:black;"><?php echo "".($pageno-2)."";?></a>
+            </li>
+            <li class="<?php if($pageno <= 1){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno-1); } ?>" style="color:black;" ><?php echo "".($pageno-1)."";?></a>
+            </li>
+            <li>
+                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>" style="color:black;"><?php echo "<b> ".$pageno."</b>";?></a>
+            </li>
+            <li class="<?php if($pageno >= $total_pages ){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>" style="color:black;"><?php echo "".($pageno+1)."";?></a>
+            </li>
+            <li class="<?php if($pageno >= $total_pages || $pageno>1){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 2); } ?>" style="color:black;"><?php echo "".($pageno+2)."";?></a>
+            </li>
+            <li><a href="?pageno=<?php echo $total_pages; ?>" style="color:black;">Last</a></li>
+        </ul>
       </div>
     </div>
 
 
 
     <footer id="footer">
-        <div class="inner">
+        <!--<div class="inner">-->
           <div class="content">
             
             <section>
@@ -319,7 +315,8 @@ include 'config.php';
           <div class="copyright">
             &copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
           </div>
-        </div>
+        <!--</div>-->
+        
       </footer>
 
     <script src="js/vendor/jquery.js"></script>
@@ -329,8 +326,6 @@ include 'config.php';
       <script src="js/breakpoints.min.js"></script>
       <script src="js/util.js"></script>
       <script src="js/main.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+    
   </body>
 </html>

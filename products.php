@@ -10,7 +10,7 @@ if($_SESSION["type"] === "admin"){
 ?>
 
 <!doctype html>
-<html  lang="en" style="font-size:100%;">
+<html  lang="en" style="font-size: 100%;" >
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,7 +28,7 @@ if($_SESSION["type"] === "admin"){
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link href = "css/jquery-ui.css" rel = "stylesheet">
     <!-- Custom CSS -->
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
 
 
   </head>
@@ -217,8 +217,11 @@ if($_SESSION["type"] === "admin"){
                 echo '<strong>Category</strong>: '.$obj->category.'</br>';
                 echo '<strong>Units Available</strong>: '.$obj->qty.'</br>';
                 if($obj->qty > 0){
-                  echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'"><input type="submit" value="Add To Cart" style=" text-align:center; clear:both; background: #ffc299; border: none; color:red; font-size: 1em; " /></a></p>';
-                  // <div class="text-center container-card-button">
+                  // echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'" ><input type="submit" value="Add To Cart" style=" text-align:center; clear:both; background: #ffc299; border: none; color:red; font-size: 1em; " /></a></p>';
+
+                  echo '<br><p style="text-align:center;"><a href="update-cart.php?action=add&id='.$obj->id.'" class = "btn btn-info"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a></p>';
+
+                  // // <div class="text-center container-card-button">
                   //   <button 
                   //      type="button"
                   //      class="btn btn-default"
@@ -277,42 +280,37 @@ if($_SESSION["type"] === "admin"){
           ?>
         </div>
     </div>
-  </div>
-
+  <div class = style = "text-align: center;">
+      <div style="width: 250px; margin: 0 auto; ">
         <ul class="pagination">
-              <li><a href="?pageno=1">First</a></li>
-              <li class="<?php if($pageno <= 1){ echo 'hidden'; } ?>">
-                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno-1); } ?>"><?php echo "".($pageno-1)."";?></a>
-              </li>
-              <li>
-                  <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>"><?php echo "<b> ".$pageno."</b>";?></a>
-              </li>
-              <li class="<?php if($pageno >= $total_pages){ echo 'hidden'; } ?>">
-                  <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>"><?php echo "".($pageno+1)."";?></a>
-              </li>
-              <li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
-          </ul>
-        <div class="row" style="margin-top:10px;">
-          <div class="small-12">
-
-
-
-
-        <!-- <footer style="margin-top:10px;">
-           <p style="text-align:center; font-size:0.8em;clear:both;">&copy; BOLT Sports Shop. All Rights Reserved.</p>
-        </footer> -->
-
-
-
+            <li><a href="?pageno=1" style="color:black;">First</a></li>
+            <li class="<?php if($pageno<=2 || $pageno <= $total_pages-1){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno - 2); } ?>" style="color:black;"><?php echo "".($pageno-2)."";?></a>
+            </li>
+            <li class="<?php if($pageno <= 1){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno-1); } ?>" style="color:black;" ><?php echo "".($pageno-1)."";?></a>
+            </li>
+            <li>
+                <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".$pageno; } ?>" style="color:black;"><?php echo "<b> ".$pageno."</b>";?></a>
+            </li>
+            <li class="<?php if($pageno >= $total_pages ){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>" style="color:black;"><?php echo "".($pageno+1)."";?></a>
+            </li>
+            <li class="<?php if($pageno >= $total_pages || $pageno>1){ echo 'hidden'; } ?>">
+                <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 2); } ?>" style="color:black;"><?php echo "".($pageno+2)."";?></a>
+            </li>
+            <li><a href="?pageno=<?php echo $total_pages; ?>" style="color:black;">Last</a></li>
+        </ul>
       </div>
     </div>
+
+</div>
 
 
 
     <footer id="footer">
         <div class="inner">
           <div class="content">
-            
             <section>
               <h4>Follow us:</h4>
               <ul class="plain">
@@ -327,8 +325,7 @@ if($_SESSION["type"] === "admin"){
             &copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
           </div>
         </div>
-      </footer>
-
+    </footer>
     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
     <script src="js/jquery.min.js"></script>
@@ -336,8 +333,5 @@ if($_SESSION["type"] === "admin"){
       <script src="js/breakpoints.min.js"></script>
       <script src="js/util.js"></script>
       <script src="js/main.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
   </body>
 </html>

@@ -13,7 +13,7 @@ if(isset($_SESSION["username"])){
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>Login</title>
+    <title>Register</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
@@ -67,7 +67,7 @@ if(isset($_SESSION["username"])){
       </div>
 
       <br>
-      <input type="submit" value="Login"/>
+      <input type="submit" value="Register"/>
       <input type="reset" value="Reset" />
     </form>
     
@@ -103,8 +103,8 @@ if(isset($_SESSION["username"])){
 
       <style>
         #login {
-            margin-left:500px;
-            margin-right:500px;
+            margin-left:100px;
+            margin-right:100px;
         }
          #login label{
             margin-right:5px;

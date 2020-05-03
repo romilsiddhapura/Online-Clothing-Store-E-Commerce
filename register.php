@@ -1,155 +1,173 @@
-  <?php
-if(session_id() == '' || !isset($_SESSION))
+<?php
+  if(session_id() == '' || !isset($_SESSION))
   {
     session_start();
   }
 
-if(isset($_SESSION["username"])) 
+  if(isset($_SESSION["username"])) 
   {
     header ("location:index.php");
   }
 ?>
 
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE HTML>
+<html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
-    <link rel="stylesheet" href="css/foundation.css" />
-    <script src="js/vendor/modernizr.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
-  <body>
+  <body >
 
-    <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
-        <li class="name">
-          <h1><a href="index.php">Clothing Shop</a></h1>
-        </li>
-        <li class="toggle-topbar menu-icon"><a href="#"><span></span></a></li>
-      </ul>
+    <!-- Header -->
+      <header id="header">
+        <a class="logo" href="index.php">Clothing Store</a>
+        <nav>
+          <a href="#menu">Menu</a>
+        </nav>
+      </header>
 
-      <section class="top-bar-section">
-      <!-- Right Nav Section -->
-        <ul class="right">
-          <li><a href="about.php">About</a></li>
-          <li><a href="products.php">Products</a></li>
-          <li><a href="cart.php">View Cart</a></li>
-          <li><a href="orders.php">My Orders</a></li>
-          <li><a href="contact.php">Contact</a></li>
-          <?php
+    <!-- Nav -->
+      <nav id="menu">
+        <ul class="links">
+          <li><a href="index.php">Home</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="products.php">Products</a></li>
+                    <li><a href="cart.php">View Cart</a></li>
+                    <li><a href="orders.php">My Orders</a></li>
+                    <li><a href="contact.php">Contact</a></li>
 
-          if(isset($_SESSION['username'])){
-            echo '<li><a href="account.php">My Account</a></li>';
-            echo '<li><a href="logout.php">Log Out</a></li>';
-          }
-          else{
-            echo '<li><a href="login.php">Log In</a></li>';
-            echo '<li class="active"><a href="register.php">Register</a></li>';
-          }
-          ?>
+                  <?php
+                    if(isset($_SESSION['username'])){
+                      echo '<li><a href="account.php">My Account</a></li>';
+                      echo '<li><a href="logout.php">Log Out</a></li>';
+                    }
+                    else{
+                      echo '<li><a href="login.php">Log In</a></li>';
+                      echo '<li class="active"><a href="register.php">Register</a></li>';
+                    }
+                  ?>
         </ul>
-      </section>
-    </nav>
+      </nav>
+
+    
+    <br>
+    <form method="POST" id="register" action="#">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" type="form-control" placeholder="First name" name="fname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" type="form-control" placeholder="Last name" name="lname" required>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address</label>
+        <input type="text" id="address" type="form-control" placeholder="1234, Alma Road" name="address" required>
+      </div>
+
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" id="city" type="form-control" placeholder="City" name="city" required>
+      </div>
+
+      <div class="form-group">
+        <label for="pin" class="right inline">ZIP Code</label>
+        <input type="text" id="pin" type="form-control" placeholder="999999" name="pin" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="right inline">Email</label>
+        <input type="email" id="email" type="form-control" placeholder="Enter email" name="email" onkeyup="checkMail(this.value)" required>
+        <span id="checkemail"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="right inline">Password</label>
+        <input type="password" id="password" type="form-control" placeholder="Enter Password" name="pwd" onkeyup="checkStrength(this.value)" required>
+        <span id="result"></span>
+      </div>
+
+<!--       <div class="small-8 columns">
+        <button type="submit" id="submit" class="btn btn-primary">Register</button>
+        <button type="reset" id="reset">Reset</button>
+      </div> -->
+      <br>
+      <input type="submit" id="submit" value="Register"/>
+      <input type="reset" value="Reset" />
+    </form>
+    
 
 
-
-
-
-    <form method="POST" id="register" action="#" style="margin-top:30px;">
-      <div class="row">
-        <div class="small-8">
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="fname" class="right inline">First Name</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="text" id="fname" placeholder="First name" name="fname" required>
-            </div>
+    <!-- Footer -->
+      <footer id="footer">
+        <div class="inner">
+          <div class="content">
+            
+            <section>
+              <h4>Follow us:</h4>
+              <ul class="plain">
+                <li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+              </ul>
+            </section>
           </div>
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="lname" class="right inline">Last Name</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="text" id="lname" placeholder="Last name" name="lname" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="address" class="right inline">Address</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="text" id="address" placeholder="Address" name="address" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="city" class="right inline">City</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="text" id="city" placeholder="City" name="city" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="pin" class="right inline">Zip Code</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="number" id="pin" placeholder="Zip code" name="pin" required>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="email" class="right inline">E-Mail</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="email" id="email" placeholder="Email" name="email" onkeyup="checkMail(this.value)" required><span id="checkemail"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-4 columns">
-              <label for="password" class="right inline">Password</label>
-            </div>
-            <div class="small-8 columns">
-              <input type="password" id="password" name="pwd" onkeyup="checkStrength(this.value)" required><span id="result"></span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="small-4 columns">
-
-            </div>
-            <div class="small-8 columns">
-              <input type="submit" id="submit" value="Register" style="background: #0078A0; border: none; color: #fff; font-family: 'Helvetica Neue', sans-serif; font-size: 1em; padding: 10px;">
-              <input type="reset" id="reset" value="Reset" style="background: #0078A0; border: none; color: #fff; font-family: 'Helvetica Neue', sans-serif; font-size: 1em; padding: 10px;">
-            </div>
+          <div class="copyright">
+            &copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
           </div>
         </div>
-      </div>
-    </form>
+      </footer>
+
+    <!-- Scripts -->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/browser.min.js"></script>
+      <script src="js/breakpoints.min.js"></script>
+      <script src="js/util.js"></script>
+      <script src="js/main.js"></script>
 
 
-    <div class="row" style="margin-top:10px;">
-      <div class="small-12">
 
-        <footer>
-           <p style="text-align:center; font-size:0.8em;">&copy; BOLT Sports Shop. All Rights Reserved.</p>
-        </footer>
 
-      </div>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <style>
   #register {
-    margin-left:100px;
+    margin-left:500px;
+    margin-right:500px;
 }
  #register label{
     margin-right:5px;
 }
  #register input {
-    padding:5px 7px;
+    padding:5px 5px;
     border:1px solid #d5d9da;
     box-shadow: 0 0 5px #e8e9eb inset;
-    width:250px;
+    
     font-size:1em;
     outline:0;
 }
@@ -172,11 +190,11 @@ if(isset($_SESSION["username"]))
 
 
 
-    <script src="js/vendor/jquery.js"></script>
+<!--     <script src="js/vendor/jquery.js"></script>
     <script src="js/foundation.min.js"></script>
-
+ -->
     <script>
-      $(document).foundation();
+      //$(document).foundation();
       var error=false;
       function checkMail(str) {
         if (str.length == 0) {
