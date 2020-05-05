@@ -25,7 +25,7 @@ $result = $mysqli->query('INSERT INTO products (product_code, product_name, prod
 
 if($result)
 {
-  header("location:success.php");
+  header("location:newadmin.php");
 }
 else
 {

@@ -50,11 +50,11 @@ include 'config.php';
       <ul class="links">
         <li><a href="index.php">Home</a></li>
         <!-- <li><a href="elements.html">Elements</a></li> -->
-        <li><a href="about.php">About</a></li>
+        <!-- <li><a href="about.php">About</a></li> -->
         <li class='active'><a href="newadmin.php">Products</a></li>
         <li><a href="cart.php">View Cart</a></li>
         <li><a href="orders.php">My Orders</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <!-- <li><a href="contact.php">Contact</a></li> -->
         <!-- <li><a href="generic.html">Generic</a></li> -->
         <?php
 
@@ -179,13 +179,16 @@ include 'config.php';
   <div class="container">
     <div  style="margin-top:10px;">
       <br>
-      <h2 align="center"> Hey Romil(Founder), Update your products. </h2>
+      <h2 align="center"> Hey Admin, Update your products. </h2>
       <br>
       <br>
     </div>
     <div class = "row">
       <div class="col-md-3">
       <!-- <div class="small-12"> -->
+        <a href="add-item.php">
+        <button id="addItem">Add New Product</button>
+      </a>
           <form action="newadmin.php" method="POST">
             <label for="Category">Choose Category:</label>
             <select class="form-control" name="Category" style = "width:200px;">
@@ -299,7 +302,7 @@ include 'config.php';
 
 
     <footer id="footer">
-        <!--<div class="inner">-->
+        <!-- <div class="inner"> -->
           <div class="content">
             
             <section>
@@ -315,7 +318,7 @@ include 'config.php';
           <div class="copyright">
             &copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
           </div>
-        <!--</div>-->
+        <!-- </div> -->
         
       </footer>
 

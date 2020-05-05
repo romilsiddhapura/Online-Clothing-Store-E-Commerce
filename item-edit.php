@@ -26,7 +26,7 @@ $result = $mysqli->query('UPDATE products SET product_code="'.$code.'", product_
 
 if($result)
 {
-  header("location:success.php");
+  header("location:newadmin.php");
 }
 else
 {

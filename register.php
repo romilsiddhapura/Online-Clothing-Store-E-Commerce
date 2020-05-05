@@ -34,11 +34,11 @@
       <nav id="menu">
         <ul class="links">
           <li><a href="index.php">Home</a></li>
-                    <li><a href="about.php">About</a></li>
+                    <!-- <li><a href="about.php">About</a></li> -->
                     <li><a href="products.php">Products</a></li>
                     <li><a href="cart.php">View Cart</a></li>
                     <li><a href="orders.php">My Orders</a></li>
-                    <li><a href="contact.php">Contact</a></li>
+                    <!-- <li><a href="contact.php">Contact</a></li> -->
 
                   <?php
                     if(isset($_SESSION['username'])){
@@ -98,8 +98,11 @@
         <button type="reset" id="reset">Reset</button>
       </div> -->
       <br>
-      <input type="submit" id="submit" value="Register"/>
-      <input type="reset" value="Reset" />
+      <!-- <input type="submit" id="submit" value="Register"/>
+      <input type="reset" value="Reset" /> -->
+      <input type="submit" id = "submit" style="width: 100px;" value="Register"/>
+      <input type="reset" style="width: 100px;" value="Reset" />
+      
     </form>
     
 

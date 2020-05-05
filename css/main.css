@@ -1780,18 +1780,39 @@ ul.icons {
 
 /* Wrapper */
 .wrapper {
-  padding: 8rem 0 6rem 0 ;
+  text-align: center;
+  padding: 4rem 0 6rem 0 ;
   position: relative;
+  border-radius: 8px;
+  border-top: 1px solid #eee;
   z-index: 1; }
   @media screen and (max-width: 1280px) {
     .wrapper {
-      padding: 4rem 0 2rem 0 ; } }
+      padding: 2rem 0 2rem 0 ; } }
   @media screen and (max-width: 736px) {
     .wrapper {
       padding: 3rem 0 1rem 0 ; } }
   @media screen and (max-width: 480px) {
     .wrapper {
       padding: 2rem 0 0.1rem 0 ; } }
+
+/*wrapper {
+  text-align: center;
+  width: 40em;
+  margin: 2.5em auto;
+  padding: 1em;
+  border-radius: 8px;
+  border-top: 1px solid #eee;
+}*/
+
+.wrapper> :first-child {
+  margin-top: 0;
+}
+
+.wrapper> :last-child {
+  margin-bottom: 0;
+}
+
 
 /* Banner */
 #banner {
@@ -1968,10 +1989,10 @@ ul.icons {
     #banner > .inner > :last-child {
       margin-bottom: 0; }
   #banner h1 {
-    font-size: 4rem;
+    font-size: 3rem;
     margin-bottom: 1rem; }
   #banner p {
-    font-size: 1.5rem; }
+    font-size: 1.3rem; }
   #banner a {
     color: rgba(255, 255, 255, 0.5);
     text-decoration: none; }
@@ -1991,14 +2012,14 @@ ul.icons {
     right: 50%;
     width: auto; }
   #banner:before {
-    -moz-transition: opacity 3s ease;
-    -webkit-transition: opacity 3s ease;
-    -ms-transition: opacity 3s ease;
-    transition: opacity 3s ease;
+    -moz-transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -ms-transition: opacity 1s ease;
+    transition: opacity 1s ease;
     -moz-transition-delay: 1.25s;
     -webkit-transition-delay: 1.25s;
     -ms-transition-delay: 1.25s;
-    transition-delay: 1.25s;
+    transition-delay: 0.5s;
     background: #111111;
     content: '';
     display: block;
@@ -2208,7 +2229,7 @@ ul.icons {
 #footer {
   background-color: #111111;
   color: rgba(255, 255, 255, 0.5);
-  padding: 0 0 6rem 0 ; }
+  padding: 8rem 0 6rem 0 ; }
   #footer input, #footer select, #footer textarea {
     color: #ffffff; }
   #footer a {

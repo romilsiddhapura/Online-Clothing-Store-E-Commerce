@@ -45,11 +45,11 @@ if($_SESSION["type"] === "admin"){
       <ul class="links">
         <li><a href="index.php">Home</a></li>
         <!-- <li><a href="elements.html">Elements</a></li> -->
-        <li><a href="about.php">About</a></li>
+        <!-- <li><a href="about.php">About</a></li> -->
         <li class='active'><a href="products.php">Products</a></li>
         <li><a href="cart.php">View Cart</a></li>
         <li><a href="orders.php">My Orders</a></li>
-        <li><a href="contact.php">Contact</a></li>
+        <!-- <li><a href="contact.php">Contact</a></li> -->
         <!-- <li><a href="generic.html">Generic</a></li> -->
         <?php
 

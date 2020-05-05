@@ -12,7 +12,7 @@ $result = $mysqli->query("UPDATE products SET soft_delete='1' WHERE id='".$id."'
 
 if($result)
 {
-  header("location:success.php");
+  header("location:newadmin.php");
 }
 else
 {
