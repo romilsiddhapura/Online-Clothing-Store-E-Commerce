@@ -181,6 +181,7 @@ if($_SESSION["type"] === "admin"){
     <div class = "row">
       <div class="col-md-3">
       <!-- <div class="small-12"> -->
+          <a href="index.php"><img src="images/logo.png" height="200px" width="200px" style="opacity: 80%"></a>
           <form action="products.php" method="POST">
             <label for="Category">Choose Category:</label>
             <select class="form-control" name="Category" style = "width:200px;">

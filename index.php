@@ -19,7 +19,10 @@ if(session_id() == '' || !isset($_SESSION))
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
+		<link rel="icon" href="images/logo/favicon.ico" />
 		<link rel="stylesheet" href="css/main.css" />
+		<script src="js/jquery-1.10.2.min.js"></script>
+    	<script src="js/jquery-ui.js"></script>
 		<script src="js/bootstrap.min.js"></script>
     	<link rel="stylesheet" href="css/bootstrap.min.css">
     	<link href = "css/jquery-ui.css" rel = "stylesheet">
@@ -33,7 +36,8 @@ if(session_id() == '' || !isset($_SESSION))
 
 		<!-- Header -->
 			<header id="header">
-				<a class="logo" href="index.php">Clothing Store</a>
+				<!-- <img src="images/logo1.jpg"> -->
+				<a class="logo" href="index.php"><img src="images/logo.png" height="50px" width="60px"></a>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>
@@ -43,7 +47,7 @@ if(session_id() == '' || !isset($_SESSION))
 			<nav id="menu">
 				<ul class="links">
 					<li><a href="index.php">Home</a></li>
-                  	<li><a href="about.php">About</a></li>
+                  	<!-- <li><a href="about.php">About</a></li> -->
                   	<li><a href="products.php">Products</a></li>
                   	<li><a href="cart.php">View Cart</a></li>
                   	<li><a href="orders.php">My Orders</a></li>
@@ -63,9 +67,10 @@ if(session_id() == '' || !isset($_SESSION))
 			</nav>
 
 		<!-- Banner -->
-			<section id="banner" style="background-image:url('images/indexbg.jpg')">
+			<section id="banner" style="background-image:url('images/wall.jpeg')">
 				<div class="inner">
 					<h1>Welcome to our Clothing Store!</h1>
+					<a href="index.php">&nbsp;<img src="images/logo.png" height="250px" width="250px" style="opacity: 50%"></a>
 				</div>
 				<!-- <img src="images/indexbg.jpg"></img> -->
 				<!-- <video autoplay loop muted playsinline src="images/banner.mp4"></video> -->
@@ -103,6 +108,9 @@ if(session_id() == '' || !isset($_SESSION))
 
 					                  echo '<br><p style="text-align:center;"><a href="update-cart.php?action=add&id='.$obj->id.'" class = "btn btn-info"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a></p>';
 					              }
+					              	else{
+					              		echo '<br><p style="text-align:center;">Out of Stock!</p>';
+					              	}
 					                  echo '</div>';
 					                  echo '</div>';
 					          }
@@ -116,9 +124,9 @@ if(session_id() == '' || !isset($_SESSION))
 			<br>
 			<br>
 		</section>
-<hr>
+		<hr>
 		<section id="contact">
-			<div class = "inner" style="background-color: #f0f0f0;padding-bottom: 20px;">
+			<div class = "inner" style="background-color: #f0f0f0;padding: 20px;">
 				<div class = "wrapper">
 					<h1>Contact Us</h1>
 				</div>
@@ -130,7 +138,7 @@ if(session_id() == '' || !isset($_SESSION))
 
 			      <div class="form-group">
 			        <label for="Subject" class="right inline">Subject</label>
-			        <textarea  id="Subject" name="Subject"></textarea>
+			        <textarea  id="Subject" name="Subject" rows=5 required></textarea>
 			      </div>
 
 			      <br>
@@ -144,16 +152,26 @@ if(session_id() == '' || !isset($_SESSION))
 	<!-- Footer -->
 	<footer id="footer">
         <div class="inner">
-          <div class="content">
+          <!-- <div class="content"> -->
             
             <section>
+            <div class="row">
+            	<div class="col-md-3">
+            	</div>
+            	<div class="col-md-6">
               <h4>Follow us:</h4>
+              
               <ul class="plain">
-                <li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-twitter"></i>Twitter&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-facebook"></i>Facebook&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-instagram"></i>Instagram&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-github"></i>Github&nbsp;</a></li>
               </ul>
+          </div>
+          <div class="col-md-3">
+          	<a href="index.php"><img src="images/logo.png" height="200px" width="200px"></a>
+          <!-- </div> -->
+          </div>
             </section>
           </div>
           <div class="copyright">
