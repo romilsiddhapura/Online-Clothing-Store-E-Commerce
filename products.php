@@ -206,7 +206,7 @@ if($_SESSION["type"] === "admin"){
 
                 //echo '<p>'.$obj->category.'</p>';
                 echo '<div class="col-sm-4 col-lg-4 col-md-4">';
-                echo '<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:450px;">';
+                echo '<div style="border:1px solid #ccc; border-radius:5px; padding:16px; margin-bottom:16px; height:400px;">';
                 echo '<p align="center"><strong>'.$obj->product_name.'</strong></p>';
 
                 //echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
@@ -216,7 +216,7 @@ if($_SESSION["type"] === "admin"){
                 
                 echo '<h4 style="text-align:center; color:red;" class="text_danger">$'. $obj->price . '</h4>';
                 echo '<strong>Category</strong>: '.$obj->category.'</br>';
-                echo '<strong>Units Available</strong>: '.$obj->qty.'</br>';
+                //echo '<strong>Units Available</strong>: '.$obj->qty.'</br>';
                 if($obj->qty > 0){
                   // echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'" ><input type="submit" value="Add To Cart" style=" text-align:center; clear:both; background: #ffc299; border: none; color:red; font-size: 1em; " /></a></p>';
 
@@ -297,7 +297,7 @@ if($_SESSION["type"] === "admin"){
             <li class="<?php if($pageno >= $total_pages ){ echo 'hidden'; } ?>">
                 <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>" style="color:black;"><?php echo "".($pageno+1)."";?></a>
             </li>
-            <li class="<?php if($pageno >= $total_pages || $pageno>1){ echo 'hidden'; } ?>">
+            <li class="<?php if(($pageno+2 >= $total_pages) || $pageno>1){ echo 'hidden'; } ?>">
                 <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 2); } ?>" style="color:black;"><?php echo "".($pageno+2)."";?></a>
             </li>
             <li><a href="?pageno=<?php echo $total_pages; ?>" style="color:black;">Last</a></li>

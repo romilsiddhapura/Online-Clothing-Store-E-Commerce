@@ -105,10 +105,10 @@ include 'config.php';
                 echo '<div class="p-2 px-3 text-uppercase">Product Image</div>';
                 echo '</th>';
                 echo '<th scope="col" class="border-0 bg-light">';
-                echo '<div class="p-2 px-3 text-uppercase">Price</div>';
+                echo '<div class="p-2 px-3 text-uppercase">Quantity</div>';
                 echo '</th>';
                 echo '<th scope="col" class="border-0 bg-light">';
-                echo '<div class="p-2 px-3 text-uppercase">Quantity</div>';
+                echo '<div class="p-2 px-3 text-uppercase">Price</div>';
                 echo '</th>';
                 echo '<th scope="col" class="border-0 bg-light">';
                 echo '<div class="p-2 px-3 text-uppercase">Remove</div>';
@@ -129,7 +129,7 @@ include 'config.php';
                       echo '<td class="border-0 align-middle">'.$obj->product_name.'</td>';
                       echo '<td class="border-0 align-middle"><img src="data:image/jpeg;base64,'.base64_encode( $obj->product_image ).'"style="width:80px;height:100px;"/></td>';
                       echo '<td class="border-0 align-middle">'.$quantity.'&nbsp;<a href="update-cart.php?action=add&id='.$product_id.'" class="btn btn-success btn-sm">+</a>&nbsp;<a href="update-cart.php?action=subtract&id='.$product_id.'" class="btn btn-danger btn-sm">-</a></td>';
-                      echo '<td class="border-0 align-middle">'.$cost.'</td>';
+                      echo '<td class="border-0 align-middle">'.$currency.$cost.'</td>';
                       echo '<td class="border-0 align-middle"><a href="update-cart.php?action=remove&id='.$product_id.'" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a></td>';
                       echo '</tr>';
                     }
@@ -139,8 +139,8 @@ include 'config.php';
 
 
                 echo '<tr>';
-                echo '<td colspan="4" align="right">Total</td>';
-                echo '<td>'.$total.'</td>';
+                echo '<td colspan="5" align="right">Total</td>';
+                echo '<td>'.$currency.$total.'</td>';
                 echo '</tr>';
                 echo '</tbody>';
                 echo '</table>';
