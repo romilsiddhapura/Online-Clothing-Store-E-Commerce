@@ -21,7 +21,7 @@ include 'config.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Products || BOLT Sports Shop</title>
     <link rel="stylesheet" href="css/foundation.css" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/main.css" /> 
     <!-- <script src="js/vendor/modernizr.js"></script> -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -186,9 +186,10 @@ include 'config.php';
     <div class = "row">
       <div class="col-md-3">
       <!-- <div class="small-12"> -->
-        <a href="add-item.php">
-        <button id="addItem">Add New Product</button>
-      </a>
+        <a href="add-item.php" class="btn btn-info" style="font-size: 17px; width: 200px;" >Add New Product</a></br>
+          
+       
+        <br>
           <form action="newadmin.php" method="POST">
             <label for="Category">Choose Category:</label>
             <select class="form-control" name="Category" style = "width:200px;">
@@ -291,7 +292,7 @@ include 'config.php';
             <li class="<?php if($pageno >= $total_pages ){ echo 'hidden'; } ?>">
                 <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>" style="color:black;"><?php echo "".($pageno+1)."";?></a>
             </li>
-            <li class="<?php if($pageno >= $total_pages || $pageno>1){ echo 'hidden'; } ?>">
+            <li class="<?php if(($pageno+2 >= $total_pages) || $pageno>1){ echo 'hidden'; } ?>">
                 <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 2); } ?>" style="color:black;"><?php echo "".($pageno+2)."";?></a>
             </li>
             <li><a href="?pageno=<?php echo $total_pages; ?>" style="color:black;">Last</a></li>

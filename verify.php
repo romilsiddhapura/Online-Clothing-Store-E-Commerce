@@ -37,7 +37,7 @@ if($result){
 
 function redirect() {
   echo '<h1>Invalid Login! Redirecting...</h1>';
-  header("Refresh: 1; url=index.php");
+  header("Refresh: 0.1; url=login.php");
 }
 
 
