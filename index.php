@@ -37,7 +37,7 @@ if(session_id() == '' || !isset($_SESSION))
 		<!-- Header -->
 			<header id="header">
 				<!-- <img src="images/logo1.jpg"> -->
-				<a class="logo" href="index.php"><img src="images/logo.png" height="50px" width="60px"></a>
+				<div><a class="logo" href="index.php"><img src="images/logo.png" height="44px" width="60px" class="img-fluid"></a></div>
 				<nav>
 					<a href="#menu">Menu</a>
 				</nav>

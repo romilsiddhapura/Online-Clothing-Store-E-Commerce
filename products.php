@@ -10,35 +10,36 @@ if($_SESSION["type"] === "admin"){
 ?>
 
 <!doctype html>
-<html  lang="en" style="font-size: 100%;" >
+<html lang="en" style="font-size: 100%;">
   <head>
+    <title>Products</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products || BOLT Sports Shop</title>
-    <link rel="stylesheet" href="css/foundation.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="icon" href="images/logo/favicon.ico" />
     <link rel="stylesheet" href="css/main.css" />
-    <!-- <script src="js/vendor/modernizr.js"></script> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
     <script src="js/jquery-1.10.2.min.js"></script>
-    <script src="js/jquery-ui.js"></script>
+      <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link href = "css/jquery-ui.css" rel = "stylesheet">
-    <!-- Custom CSS -->
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
-
-
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link href = "css/jquery-ui.css" rel = "stylesheet">
   </head>
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+  </style>
   <body class="is-preload">
-    <header id="header">
-      <a class="logo" href="index.php">Industrious</a>
-      <nav>
-        <a href="#menu">Menu</a>
-      </nav>
-    </header>
+
+    <!-- Header -->
+      <header id="header">
+        <!-- <img src="images/logo1.jpg"> -->
+        <div><a class="logo" href="index.php"><img src="images/logo.png" height="44px" width="60px" class="img-fluid"></a></div>
+        <nav>
+          <a href="#menu">Menu</a>
+        </nav>
+      </header>
 
   <!-- Nav -->
     <nav id="menu">
@@ -186,9 +187,10 @@ if($_SESSION["type"] === "admin"){
             <label for="Category">Choose Category:</label>
             <select class="form-control" name="Category" style = "width:200px;">
               <option value="all" <?if($_POST['Category'] == 'all'){echo " selected";}?>>All Categories</option>
-              <option value="Jeans" <?if($_POST['Category'] == 'Jeans'){echo " selected";}?>>Jeans</option>
-              <option value="Jersey" <?if($_POST['Category'] == 'Jersey'){echo " selected";}?>>Jersey</option>
-              <option value="Jacket" <?if($_POST['Category'] == 'Jacket'){echo " selected";}?>>Jacket</option>
+              <option value="Cap" <?if($_POST['Category'] == 'Cap'){echo " selected";}?>>Caps</option>
+              <option value="Jersey" <?if($_POST['Category'] == 'Jersey'){echo " selected";}?>>Jerseys</option>
+              <option value="Hoodie" <?if($_POST['Category'] == 'Hoodie'){echo " selected";}?>>Hoodies</option>
+              <option value="Short" <?if($_POST['Category'] == 'Short'){echo " selected";}?>>Shorts</option>
             </select>
             Search: <input type="text" name="term"/ style = "width:200px;"><br/>  
             <input type="submit" value="Submit" >
@@ -210,17 +212,17 @@ if($_SESSION["type"] === "admin"){
                 echo '<p align="center"><strong>'.$obj->product_name.'</strong></p>';
 
                 //echo '<img src="images/'.$obj->category.'/'.$obj->product_img_name.'"/>';
-                echo '<img src="data:image/jpeg;base64,'.base64_encode( $obj->product_image ).'" class="img-responsive" style="width:200px;height:225px;" />';
+                echo '<img src="data:image/jpeg;base64,'.base64_encode( $obj->product_image ).'" class="img-responsive" style="width:225px;height:225px;" />';
                 //echo '<p><strong>Product Code</strong>: '.$obj->product_code.'</p>';
                 //echo '<p><strong>Description</strong>: '.$obj->product_desc.'</p>';
                 
-                echo '<h4 style="text-align:center; color:red;" class="text_danger">$'. $obj->price . '</h4>';
-                echo '<strong>Category</strong>: '.$obj->category.'</br>';
+                echo '<h4 style="text-align:center;"><strong>$'. $obj->price . '</strong></h4>';
+                echo '<p align="center"><strong>Category</strong>: '.$obj->category.'</p>';
                 //echo '<strong>Units Available</strong>: '.$obj->qty.'</br>';
                 if($obj->qty > 0){
                   // echo '<p><a href="update-cart.php?action=add&id='.$obj->id.'" ><input type="submit" value="Add To Cart" style=" text-align:center; clear:both; background: #ffc299; border: none; color:red; font-size: 1em; " /></a></p>';
 
-                  echo '<br><p style="text-align:center;"><a href="update-cart.php?action=add&id='.$obj->id.'" class = "btn btn-info"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a></p>';
+                  echo '<p style="text-align:center;"><a href="update-cart.php?action=add&id='.$obj->id.'" class = "btn btn-info"><span class="glyphicon glyphicon-shopping-cart"></span>Add to Cart</a></p>';
 
                   // // <div class="text-center container-card-button">
                   //   <button 
@@ -233,7 +235,7 @@ if($_SESSION["type"] === "admin"){
                   // </div>
                 }
                 else {
-                  echo 'Out Of Stock!';
+                  echo '<p align="center">Out Of Stock!</p>';
                 }
                 echo '</div>';
 
@@ -309,27 +311,40 @@ if($_SESSION["type"] === "admin"){
 
 
 
-    <footer id="footer">
+  <!-- Footer -->
+  <footer id="footer">
         <div class="inner">
-          <div class="content">
+          <!-- <div class="content"> -->
+            
             <section>
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-6">
               <h4>Follow us:</h4>
+              
               <ul class="plain">
-                <li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-twitter"></i>Twitter&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-facebook"></i>Facebook&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-instagram"></i>Instagram&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-github"></i>Github&nbsp;</a></li>
               </ul>
+          </div>
+          <div class="col-md-3">
+            <a href="index.php"><img src="images/logo.png" height="200px" width="200px"></a>
+          <!-- </div> -->
+          </div>
             </section>
           </div>
           <div class="copyright">
             &copy; <a href="https://personal.utdallas.edu/~kxp190010">Krupal Patel</a>, And <a href="https://personal.utdallas.edu/~rgs180004">Romil Siddhapura</a>.
           </div>
         </div>
-    </footer>
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/foundation.min.js"></script>
-    <script src="js/jquery.min.js"></script>
+      </footer>
+
+
+
+      <script src="js/jquery.min.js"></script>
       <script src="js/browser.min.js"></script>
       <script src="js/breakpoints.min.js"></script>
       <script src="js/util.js"></script>

@@ -11,20 +11,32 @@
 ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en" style="font-size: 100%;">
   <head>
-    <title>Register</title>
+    <title>Admin</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
+    <link rel="icon" href="images/logo/favicon.ico" />
     <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-1.10.2.min.js"></script>
+      <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link href = "css/jquery-ui.css" rel = "stylesheet">
   </head>
-  <body >
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+  </style>
+  <body class="is-preload">
 
     <!-- Header -->
       <header id="header">
-        <a class="logo" href="index.php">Clothing Store</a>
+        <!-- <img src="images/logo1.jpg"> -->
+        <div><a class="logo" href="index.php"><img src="images/logo.png" height="44px" width="60px" class="img-fluid"></a></div>
         <nav>
           <a href="#menu">Menu</a>
         </nav>
@@ -55,6 +67,11 @@
 
     
     <br>
+
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
     <form method="POST" id="register" action="#">
       <div class="form-group">
         <label for="fname">First Name</label>
@@ -77,8 +94,8 @@
       </div>
 
       <div class="form-group">
-        <label for="pin" class="right inline">ZIP Code</label>
-        <input type="text" id="pin" type="form-control" placeholder="999999" name="pin" required>
+        <label for="pin" class="right inline">ZIP Code</label><br>
+        <input type="number" id="pin" type="form-control" placeholder="999999" name="pin" minlength="5" maxlength="6" required>
       </div>
 
       <div class="form-group">
@@ -89,7 +106,7 @@
 
       <div class="form-group">
         <label for="password" class="right inline">Password</label>
-        <input type="password" id="password" type="form-control" placeholder="Enter Password" name="pwd" onkeyup="checkStrength(this.value)" required>
+        <input type="password" id="password" type="form-control" placeholder="Enter Password" name="pwd" minlength="8" onkeyup="checkStrength(this.value)" required>
         <span id="result"></span>
       </div>
 
@@ -104,22 +121,34 @@
       <input type="reset" style="width: 100px;" value="Reset" />
       
     </form>
-    
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
 
-
-    <!-- Footer -->
-      <footer id="footer">
+  <!-- Footer -->
+  <footer id="footer">
         <div class="inner">
-          <div class="content">
+          <!-- <div class="content"> -->
             
             <section>
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-6">
               <h4>Follow us:</h4>
+              
               <ul class="plain">
-                <li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-twitter"></i>Twitter&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-facebook"></i>Facebook&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-instagram"></i>Instagram&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-github"></i>Github&nbsp;</a></li>
               </ul>
+          </div>
+          <div class="col-md-3">
+            <a href="index.php"><img src="images/logo.png" height="200px" width="200px"></a>
+          <!-- </div> -->
+          </div>
             </section>
           </div>
           <div class="copyright">
@@ -127,7 +156,6 @@
           </div>
         </div>
       </footer>
-
     <!-- Scripts -->
       <script src="js/jquery.min.js"></script>
       <script src="js/browser.min.js"></script>
@@ -159,20 +187,16 @@
 
 
 <style>
-  #register {
-    margin-left:500px;
-    margin-right:500px;
-}
- #register label{
-    margin-right:5px;
-}
+
  #register input {
     padding:5px 5px;
     border:1px solid #d5d9da;
     box-shadow: 0 0 5px #e8e9eb inset;
-    
+    border-left: 3px solid;
     font-size:1em;
     outline:0;
+    border-radius: 5px;
+    transition: border-color .5s ease-out;
 }
  #result{
     margin-left:5px;
@@ -189,6 +213,26 @@
  #register .strong{
     color:#006400;
 }
+
+#register input:optional {
+  border-left-color: #999;
+}
+#register input:required:valid {
+  border-left-color: green;
+}
+
+#register input:invalid {
+  border-left-color: salmon;
+}
+#register input:required:focus:valid {
+  background-image: url("../images/check.svg") no-repeat 95% 50%
+  background-size: 25px;
+}
+#register input:focus:invalid {
+  background: url("../images/check.svg") no-repeat 95% 50%
+  background-size: 25px;
+}
+
 </style>
 
 
@@ -202,6 +246,7 @@
       function checkMail(str) {
         if (str.length == 0) {
             document.getElementById("checkemail").innerHTML = "";
+            document.getElementById("email").style="border-left-color:salmon;";
             return;
         } else {
             var xmlhttp = new XMLHttpRequest();
@@ -211,10 +256,15 @@
                     //console.log(this.responseText);
                     if(this.responseText == "OK"){
                       error = false;
+                      document.getElementById("email").style="border-left-color:green;";
+                      document.getElementById("checkemail").innerHTML = "";
                     } else {
                       error = true;
+                      document.getElementById("email").style="border-left-color:red;";
+                      document.getElementById("checkemail").innerHTML = this.responseText;
                     }
-                    document.getElementById("checkemail").innerHTML = this.responseText;
+                    //document.getElementById("checkemail").innerHTML = this.responseText;
+                    //document.getElementById("email").style="border-left-color:red;";
                 }
             }
             xmlhttp.open("GET", "checkmail.php?email="+str, true);
@@ -227,6 +277,7 @@
       //console.log(strength+" "+password);
       if(password.length==0)
       {
+        document.getElementById("password").style="border-left-color:salmon;";
         $('#result').html('')
       }
       if (password.length < 6) {
@@ -246,14 +297,17 @@
       if (password.match(/(.*[!,%,&,@,#,$,^,*,?,_,~].*[!,",%,&,@,#,$,^,*,?,_,~])/)) strength += 1
       //console.log(strength);
       if (strength < 2 ) {
+          document.getElementById("password").style="border-left-color:orange;";
           $('#result').removeClass()
           $('#result').addClass('weak')
           $('#result').html('Weak')
       } else if (strength == 2 ) {
+          document.getElementById("password").style="border-left-color:palegreen;";
           $('#result').removeClass()
           $('#result').addClass('good')
           $('#result').html('Good')
       } else {
+          document.getElementById("password").style="border-left-color:green;";
           $('#result').removeClass()
           $('#result').addClass('strong')
           $('#result').html('Strong')

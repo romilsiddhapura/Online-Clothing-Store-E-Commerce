@@ -2449,6 +2449,7 @@ body {
   width: 100%;
   z-index: 10001; }
   #header > .logo {
+    
     color: #000000;
     font-size: 1rem;
     font-weight: 600;

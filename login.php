@@ -11,25 +11,36 @@ if(isset($_SESSION["username"])){
 ?>
 
 <!DOCTYPE HTML>
-<html>
+<html lang="en" style="font-size: 100%;">
   <head>
     <title>Login</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
+    <link rel="icon" href="images/logo/favicon.ico" />
     <link rel="stylesheet" href="css/main.css" />
+    <script src="js/jquery-1.10.2.min.js"></script>
+      <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link href = "css/jquery-ui.css" rel = "stylesheet">
   </head>
+  <style>
+    html {
+  scroll-behavior: smooth;
+}
+  </style>
   <body class="is-preload">
 
     <!-- Header -->
       <header id="header">
-        <a class="logo" href="index.php">Clothing Store</a>
+        <!-- <img src="images/logo1.jpg"> -->
+        <div><a class="logo" href="index.php"><img src="images/logo.png" height="44px" width="60px" class="img-fluid"></a></div>
         <nav>
           <a href="#menu">Menu</a>
         </nav>
       </header>
-
     <!-- Nav -->
       <nav id="menu">
         <ul class="links">
@@ -75,19 +86,29 @@ if(isset($_SESSION["username"])){
     
 
 
-    <!-- Footer -->
-      <footer id="footer">
+  <!-- Footer -->
+  <footer id="footer">
         <div class="inner">
-          <div class="content">
+          <!-- <div class="content"> -->
             
             <section>
+            <div class="row">
+              <div class="col-md-3">
+              </div>
+              <div class="col-md-6">
               <h4>Follow us:</h4>
+              
               <ul class="plain">
-                <li style="display:inline"><a href="#"><i class="icon fa-twitter">&nbsp;</i>Twitter</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-facebook">&nbsp;</i>Facebook</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-instagram">&nbsp;</i>Instagram</a></li>
-                <li style="display:inline"><a href="#"><i class="icon fa-github">&nbsp;</i>Github</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-twitter"></i>Twitter&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-facebook"></i>Facebook&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-instagram"></i>Instagram&nbsp;&nbsp;</a></li>
+                <li style="display:inline"><a href="#"><i class="icon fa-github"></i>Github&nbsp;</a></li>
               </ul>
+          </div>
+          <div class="col-md-3">
+            <a href="index.php"><img src="images/logo.png" height="200px" width="200px"></a>
+          <!-- </div> -->
+          </div>
             </section>
           </div>
           <div class="copyright">
@@ -95,6 +116,7 @@ if(isset($_SESSION["username"])){
           </div>
         </div>
       </footer>
+
 
     <!-- Scripts -->
       <script src="js/jquery.min.js"></script>
