@@ -116,16 +116,25 @@ include 'config.php';
       // }
       // else{
         if($_SERVER["REQUEST_METHOD"]=="POST"  ){
-          if($_POST["Category"]=="all" && empty($_POST['term'])){
+          $category = $_POST["Category"];
+          $sport = $_POST["Sport"];
+          $term = $_POST['term'];
+          if($_POST["Category"]=="all" &&$_POST["Sport"]=="all" && empty($_POST['term'])){
             $query="SELECT * FROM products where soft_delete = '0'";  
-          } else if(empty($_POST['term'])){
-            $category = $_POST["Category"];
+          } else if(empty($term) &&  $category == "all"){
+              $query="SELECT * FROM products WHERE sport='$sport' and soft_delete = '0'";
+          } else if(empty($term) && $sport == "all"){
             $query="SELECT * FROM products WHERE category='$category' and soft_delete = '0'";
-          } else if($_POST["Category"] == "all"){
+          } else if($sport == "all" && $category == "all"){
             $query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' ";
-          } else {
-            $category = $_POST["Category"];
-            $query = "SELECT * FROM products WHERE category = '$category' and product_name LIKE '%".$_POST['term']."%' ";
+          }else if(empty($_POST['term'])){
+            $query="SELECT * FROM products WHERE category='$category' and sport='$sport' and soft_delete = '0'";
+          } else if($_POST["Category"] == "all"){
+            $query = "SELECT * FROM products WHERE sport='$sport' and product_name LIKE '%".$_POST['term']."%' ";
+          } else if($_POST["Sport"] == "all"){
+            $query = "SELECT * FROM products WHERE category='$category' and product_name LIKE '%".$_POST['term']."%' ";
+          }else {
+            $query = "SELECT * FROM products WHERE category = '$category' and sport = '$sport' and product_name LIKE '%".$_POST['term']."%' ";
           }
           // else if($_POST["Category"]!="Jeans"){
           //   $category=$_POST["Category"];
@@ -155,22 +164,47 @@ include 'config.php';
       //echo "<p>".$total_rows."</p>";
       $total_pages = ceil($total_rows / $no_of_records_per_page);
       $new_query="";
-      if($_SERVER["REQUEST_METHOD"] == 'POST'){
-        if($_POST["Category"]=="all" && empty($_POST['term'])){
-          $new_query="SELECT * FROM products where soft_delete = '0' limit $offset, $no_of_records_per_page";  
-        } else if(empty($_POST['term'])){
+      // if($_SERVER["REQUEST_METHOD"] == 'POST'){
+      //   if($_POST["Category"]=="all" && empty($_POST['term'])){
+      //     $new_query="SELECT * FROM products where soft_delete = '0' limit $offset, $no_of_records_per_page";  
+      //   } else if(empty($_POST['term'])){
+      //     $category = $_POST["Category"];
+      //     $new_query="SELECT * FROM products WHERE category='$category' and soft_delete = '0' limit $offset, $no_of_records_per_page ";
+      //   } else if($_POST["Category"] == "all"){
+      //     $new_query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page";
+      //   } else {
+      //     $category = $_POST["Category"];
+      //     $new_query = "SELECT * FROM products WHERE category = '$category' and product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page ";
+      //   }
+      // } else {
+      //   $new_query = "SELECT * FROM products where soft_delete='0' limit $offset, $no_of_records_per_page";
+      // }
+
+      if($_SERVER["REQUEST_METHOD"]=="POST"  ){
           $category = $_POST["Category"];
-          $new_query="SELECT * FROM products WHERE category='$category' and soft_delete = '0' limit $offset, $no_of_records_per_page ";
-        } else if($_POST["Category"] == "all"){
-          $new_query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page";
-        } else {
-          $category = $_POST["Category"];
-          $new_query = "SELECT * FROM products WHERE category = '$category' and product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page ";
-        }
-      } else {
+          $sport = $_POST["Sport"];
+          $term = $_POST['term'];
+          if($_POST["Category"]=="all" &&$_POST["Sport"]=="all" && empty($_POST['term'])){
+            $new_query="SELECT * FROM products where soft_delete = '0' limit $offset, $no_of_records_per_page";  
+          } else if(empty($term) &&  $category == "all"){
+              echo "<p>sdlksdjffs</p>";
+              $new_query="SELECT * FROM products WHERE sport='$sport' and soft_delete = '0' limit $offset, $no_of_records_per_page";
+          } else if(empty($term) && $sport == "all"){
+            $new_query="SELECT * FROM products WHERE category='$category' and soft_delete = '0' limit $offset, $no_of_records_per_page";
+          } else if($sport == "all" && $category == "all"){
+            $new_query = "SELECT * FROM products WHERE product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page ";
+          }else if(empty($_POST['term'])){
+            $new_query="SELECT * FROM products WHERE category='$category' and sport='$sport' and soft_delete = '0' limit $offset, $no_of_records_per_page";
+          } else if($_POST["Category"] == "all"){
+            $new_query = "SELECT * FROM products WHERE sport='$sport' and product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page";
+          } else if($_POST["Sport"] == "all"){
+            $new_query = "SELECT * FROM products WHERE category='$category' and product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page ";
+          }else {
+            $new_query = "SELECT * FROM products WHERE category = '$category' and sport = '$sport' and product_name LIKE '%".$_POST['term']."%' limit $offset, $no_of_records_per_page ";
+          }
+      } else{
         $new_query = "SELECT * FROM products where soft_delete='0' limit $offset, $no_of_records_per_page";
       }
-      
 
       $new_result = $mysqli->query($new_query);
 
@@ -187,9 +221,12 @@ include 'config.php';
     <div class = "row">
       <div class="col-md-3">
       <!-- <div class="small-12"> -->
+        
+
+        <a href="index.php"><img src="images/logo.png" height="200px" width="200px" style="opacity: 80%"></a>
+          <br>
+          <br>
         <a href="add-item.php" class="btn btn-info" style="font-size: 17px; width: 200px;" >Add New Product</a></br>
-          
-       
         <br>
           <form action="newadmin.php" method="POST">
             <label for="Category">Choose Category:</label>
@@ -199,9 +236,18 @@ include 'config.php';
               <option value="Jersey" <?if($_POST['Category'] == 'Jersey'){echo " selected";}?>>Jerseys</option>
               <option value="Hoodie" <?if($_POST['Category'] == 'Hoodie'){echo " selected";}?>>Hoodies</option>
               <option value="Short" <?if($_POST['Category'] == 'Short'){echo " selected";}?>>Shorts</option>
-            </select>
-            Search: <input type="text" name="term"/ style = "width:200px;"><br/>  
-            <input type="submit" value="Apply" >
+            </select><br>
+            <label for="Sports">Choose Sports:</label>
+            <select class="form-control" name="Sport" style = "width:200px;">
+              <option value="all" <?if($_POST['Sport'] == 'all'){echo " selected";}?>>All Categories</option>
+              <option value="Cricket" <?if($_POST['Sport'] == 'Cricket'){echo " selected";}?>>Cricket</option>
+              <option value="Soccer" <?if($_POST['Sport'] == 'Soccer'){echo " selected";}?>>Soccer</option>
+              <option value="NBA" <?if($_POST['Sport'] == 'NBA'){echo " selected";}?>>NBA</option>
+              <option value="NFL" <?if($_POST['Sport'] == 'NFL'){echo " selected";}?>>NFL</option>
+            </select><br>
+            <label for="term">Search:</label>
+            <input type="text" name="term" style = "width:200px;"><br>  
+            <input type="submit" value="Submit" >
           </form>
       </div>
     <div class="col-md-9">
